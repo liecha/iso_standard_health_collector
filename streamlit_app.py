@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="myHealth:COLLECTOR", page_icon="img/rephraise_logo.png",)
+st.set_page_config(page_title="myHealth:COLLECTOR", page_icon="img/health_logo.png",)
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -54,7 +54,7 @@ def main_gpt3emailgen():
     for i in range(0, len(titles_list)):
         this_title = '\n' + titles_list[i] + ' \n'
         st.subheader(this_title)
-        with st.expander("SECTION - " + subtitles_list[i], expanded=True):
+        with st.expander("SECTION - " + subtitles_list[i], expanded=False):
             df_selection = df_data[df_data['title'] == titles_list[i]]
             for j in range(0, len(df_selection)):
                 input_key = df_selection['variable_name'].iloc[j] + '_key'
