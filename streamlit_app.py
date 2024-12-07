@@ -65,7 +65,6 @@ def main_health_collector():
     df_data = pd.read_csv('data/iso_standard_health_selection.csv')
     df_locations = pd.read_csv('data/worldcities.csv').sort_values(['city']).reset_index()
     index_location = df_locations[df_locations['city'] == 'Stockholm']
-    print(index_location)
     locations_list = df_locations['city'].values
     titles_list = df_data['title'].unique()
     gender_list = ['Female', 'Male', 'Non-gender', 'Other']
@@ -100,7 +99,7 @@ def main_health_collector():
                         if this_variable == 'gender':
                             st.selectbox(this_question, gender_list)
                         if this_variable[0:5] == 'city_':
-                            selected_city = st.selectbox(this_question, locations_list, index=39963)
+                            selected_city = st.selectbox(this_question, locations_list, index=index_location)
                             df_selected_city = df_locations[df_locations['city'] == selected_city] 
                             df_location = df_selected_city[["lat","lng"]].rename(columns={"lng": "lon"})
                             st.map(df_location)
