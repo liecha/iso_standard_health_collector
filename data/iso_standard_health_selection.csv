@@ -1,5 +1,4 @@
 title,subtitle,category,variable_name,type,question_primary,question_secondary,widget_type
-Basic Personal Data,Basic Info Collector,patientID_basics,name,str,Name,0,text_input
 Basic Personal Data,Basic Info Collector,patientID_basics,birth_date,str,Date of birth,0,date_input
 Basic Personal Data,Basic Info Collector,patientID_basics,gender,int,Gender identity,0,selectbox
 Basic Personal Data,Basic Info Collector,patientID_basics,city_living,obj,Location,0,selectbox

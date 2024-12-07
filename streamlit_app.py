@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
 from datetime import date
-import numpy as np
+from streamlit_avatar import avatar
+import datetime
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="myHealth:COLLECTOR", page_icon="img/health_logo.png",)
+st.set_page_config(page_title="myHealth:COLLECTOR", page_icon="img/health_logo.png")
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -43,8 +44,19 @@ st.markdown('''
 }
 </style>
 ''', unsafe_allow_html=True)
-st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
+st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)
+
+st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
 def calculate_age(date_of_birth):
     date_now = date.today()
@@ -54,9 +66,42 @@ def calculate_age(date_of_birth):
     result_string = str(your_years) + ' years old'
     return result_string
 
+result = avatar(
+    [
+        {
+            "url": "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100175.jpg?t=st=1733571244~exp=1733574844~hmac=885ca26ec02e9b249ca805cfcb47204108aa21b08497f998bfda181ec918c754&w=1380",
+            "size": 208,
+            "title": "",
+            "caption": "",
+            "key": "avatar1",
+        }])
 
-def main_health_collector():
+st.write(
+    """
+    # Emelie Chandni
 
+    Welcome to our _:blue[personal lifeAtlas space]_! This space gives you an overview of your health data, saved documents and records.
+    Make sure to update your profile with as much information as possible to get the most of your data collection.
+    """
+) 
+tab1, tab2 = st.tabs(["Home", "Health Data"])            
+  
+with tab1:
+    st.info(
+        """
+        Missing data in your health collection.
+        [Let's begin to collect your health data!](https://github.com/streamlit/streamlit/issues)
+        """,
+        icon="👾",
+    )
+
+    st.success(
+        """
+        Successfully [uploaded data](https://blog.streamlit.io/the-next-frontier-for-streamlit/) to you personal lifeAtlas.
+        """,
+        icon="⭐️",
+    )
+with tab2:
     st.image('img/health_collctor.png')
     st.markdown('The following page aim to help you to create a _:blue[summary]_ of your _:blue[historical]_ and _:blue[current medical state]_.' 
                 + 'Please start to answear the questions as best as you can. You could always come back later to complete or fill in answers.')
@@ -99,17 +144,14 @@ def main_health_collector():
                         if this_variable == 'gender':
                             st.selectbox(this_question, gender_list)
                         if this_variable[0:5] == 'city_':
-                            selected_city = st.selectbox(this_question, locations_list, index=index_location)
+                            selected_city = st.selectbox(this_question, locations_list, index=39963)
                             df_selected_city = df_locations[df_locations['city'] == selected_city] 
                             df_location = df_selected_city[["lat","lng"]].rename(columns={"lng": "lon"})
                             st.map(df_location)
                     if this_widget_type == 'date_input':
-                        date_of_birth = st.date_input(this_question, value=None)
+                        date_of_birth = st.date_input(this_question, value=None, min_value=datetime.datetime(1914, 1, 1))
                         if date_of_birth:
                             age = calculate_age(date_of_birth)
                         else:
                             age = 'Unknown'
                         st.write("Your are:", age)
-            
-if __name__ == '__main__':
-    main_health_collector()
