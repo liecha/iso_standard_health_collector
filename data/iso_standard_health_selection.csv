@@ -1,24 +1,26 @@
-title,category,variable_name,type,question_primary,question_secondary
-Personal Data,patientID_basics,name,str,What is your name?,0
-Personal Data,patientID_basics,birth_date,str,When were you born (Date of Birth)?,0
-Personal Data,patientID_basics,identity_number,str,"Do you have any identification numbers (National ID, etc.)?",0
-Personal Data,patientID_basics,adress,obj,Where do you live (Address)?,0
-Personal Data,patientID_basics,gender,int,What is your gender?,0
-Personal Data,patientID_basics,ethnicity_group,str,Which ethnicity group do you feel that you belong to?,0
-Personal Data,patientID_basics,primary_language,str,What is your primary language spoken at home?,0
-Personal Data,patientID_basics,occupation,str,What is your occupation?,0
-Personal Data,patientID_basics,diagnoses,array,Do you have any diagnoses that you have to consider in your every day life?,0
-Personal Data,patientID_basics,allgergies,array,Do you have any allergies?,0
-Personal Data,emergency_info,emergency_contact,str,Who should be contacted in case of an emergency? ,0
-Personal Data,emergency_info,emergency_allerts,array,Are there any emergency health profiles that outline your key diagnoses and allergies?,0
-Personal Data,emergency_info,health_provider_primary,array,Who is your primary healthcare provider?,0
-Data Collection,medical_history,medical_records_storage,file,Do you have any medical records to upload for storage?,"If so, could you upload this records to your storage?"
-Data Collection,personal_health_data,wearable_data,file,"Do you have any wearable devices that track your health data (e.g., heart rate, activity logs)?","If so, could you upload export data to your storage?"
-Data Collection,personal_health_data,tracking_data,file,Do you have self-monitoring records such as blood pressure or glucose monitoring? ,"If so, could you upload export data to your storage?"
-Data Collection,personal_health_data,log_data,file,Do you keep dietary logs or exercise routines?,"If so, could you upload export data to your storage?"
-Data Collection,medical_visits,medical_records_summary,file,Are there any provider notes that summarize your recent visits?,"If so, could you upload this records to your storage?"
-Data Collection,medical_visits,prescriptions,file,Have you received any prescriptions from healthcare providers recently?,"If so, could you list the prescriptions?"
-Data Collection,diagnostics_labs,radiology_pathology_reports,file,Do you have radiology reports or pathology reports available?,"If so, could you upload this records to your storage?"
-Data Collection,diagnostics_labs,genetic_reports,file,Can you provide genetic and genomic data?,"If so, could you upload this records to your storage?"
-Data Collection,health_records,lab_reports,file,Do you have access to any lab results and diagnostics reports?,"If so, could you upload this records to your storage?"
-Data Collection,health_records,images_reports,file,"Do you have access to any imaging tests (e.g., X-rays, MRIs)?","If so, could you upload this records to your storage?"
+title,subtitle,category,variable_name,type,question_primary,question_secondary,widget_type
+Basic Personal Data,Basic Info Collector,patientID_basics,name,str,Name,0,text_input
+Basic Personal Data,Basic Info Collector,patientID_basics,birth_date,str,Date of birth,0,date_input
+Basic Personal Data,Basic Info Collector,patientID_basics,gender,int,Gender identity,0,selectbox
+Basic Personal Data,Basic Info Collector,patientID_basics,city_living,obj,Location,0,selectbox
+Data Collection,Raw Data Collector,medical_history,medical_records_storage,file,Medical records,0,uploader
+Data Collection,Raw Data Collector,personal_health_data,wearable_data,file,Wearable devices that data (e.g heart rate/activity logs),0,uploader
+Data Collection,Raw Data Collector,personal_health_data,tracking_data,file,Self-monitoring records (e.g blood pressure/glucose monitoring),0,uploader
+Data Collection,Raw Data Collector,personal_health_data,log_data,file,Dietary logs or exercise routines,0,uploader
+Data Collection,Raw Data Collector,medical_visits,prescriptions,file,Prescriptions from healthcare providers,0,uploader
+Data Collection,Raw Data Collector,diagnostics_labs,radiology_pathology_reports,file,Radiology or pathology reports,0,uploader
+Data Collection,Raw Data Collector,diagnostics_labs,genetic_reports,file,Genetic and genomic data,0,uploader
+Data Collection,Raw Data Collector,health_records,lab_reports,file,Lab results and diagnostics reports,0,uploader
+Data Collection,Raw Data Collector,health_records,images_reports,file,"Imaging from tests (e.g X-rays, MRIs)",0,uploader
+Data Collection,Raw Data Collector,health_records,other_reports,file,"Other health data that you want to upload",0,uploader
+Detailed Personal Data,Detailed Info Collector,patientID_basics,city_born,str,"Location of birth",0,selectbox
+Detailed Personal Data,Detailed Info Collector,patientID_basics,ethnicity_group,str,Ethnicity group,0,text_input
+Detailed Personal Data,Detailed Info Collector,patientID_basics,primary_language,str,Primary language (spoken at home),0,text_input
+Detailed Personal Data,Detailed Info Collector,patientID_basics,occupation,str,Occupation,0,text_input
+Detailed Personal Data,Detailed Info Collector,patientID_basics,diagnoses,array,Diagnoses considered in your every day life,0,text_input
+Detailed Personal Data,Detailed Info Collector,patientID_basics,allgergies,array,Allergies,0,text_input
+Emergency Data,Emergency Info Collector,emergency_info,emergency_contact,str,Emergency contact,0,text_input
+Emergency Data,Emergency Info Collector,emergency_info,emergency_phone,str,Phone number,0,text_input
+Emergency Data,Emergency Info Collector,emergency_info,emergency_allerts,array,Are there any emergency health profiles that outline your key diagnoses and allergies?,0,text_input
+Emergency Data,Emergency Info Collector,emergency_info,health_provider_primary,array,Who is your primary healthcare provider?,0,text_input
+
