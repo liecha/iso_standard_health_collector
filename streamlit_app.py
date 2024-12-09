@@ -77,7 +77,7 @@ def calculate_age(date_of_birth):
     return result_string
 
 def save_data():
-    print('this_vaiable')
+    print(st.session_state.gender)
     print('this_value')
 
 result = avatar(
@@ -121,6 +121,7 @@ with tab1:
         """,
         icon="⭐️",
     )
+
 with tab2:
     st.image('img/health_collctor.png')
     st.markdown('The following page aim to help you to create a _:blue[summary]_ of your _:blue[historical]_ and _:blue[current medical state]_.' 
@@ -132,8 +133,11 @@ with tab2:
     index_location = int(df_locations[df_locations['city'] == 'Stockholm'].index[0])
     locations_list = df_locations['city'].values
     titles_list = df_data['title'].unique()
-    gender_list = ['Female', 'Male', 'Non-gender', 'Other']
+    gender_list = ['','Female', 'Male', 'Non-gender', 'Other']
     subtitles_list = df_data['subtitle'].unique()
+
+    if 'gender' not in st.session_state:
+        st.session_state.gender = ''
 
     for i in range(0, len(titles_list)):
         this_title = '\n' + titles_list[i] + ' \n'
@@ -163,7 +167,7 @@ with tab2:
                         this_text = st.text_input(this_question, '', key=input_key)
                     if this_widget_type == 'selectbox':
                         if this_variable == 'gender':
-                            this_gender = st.selectbox(this_question, gender_list, key='selector_gender')                            
+                            st.session_state.gender = st.selectbox(this_question, gender_list, key='selector_gender')                            
                         if this_variable[0:5] == 'city_':
                             selected_city = st.selectbox(this_question, locations_list, index=index_location)
                             df_selected_city = df_locations[df_locations['city'] == selected_city] 
@@ -173,9 +177,7 @@ with tab2:
                         date_of_birth = st.date_input(this_question, value=None, min_value=datetime.datetime(1914, 1, 1))
                         if date_of_birth:
                             this_age = calculate_age(date_of_birth)
-                        else:
-                            this_age = 'Unknown'
-                        st.write("Your are:", this_age)
+                            st.write("_:blue[Your are]_:", this_age)                        
                     if this_widget_type == 'uploader':
                         uploader(this_question, input_key +'_uploader')
                 st.button('Save', key=input_key + '_button', on_click=save_data)  

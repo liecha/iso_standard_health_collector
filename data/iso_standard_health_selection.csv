@@ -36,4 +36,3 @@ Data Collection,Raw Data Collector,data_storage,genetic_reports,file,Genetic and
 Data Collection,Raw Data Collector,data_storage,lab_reports,file,Lab results and diagnostics reports,0,uploader
 Data Collection,Raw Data Collector,data_storage,images_reports,file,"Imaging from tests (e.g X-rays, MRIs)",0,uploader
 Data Collection,Raw Data Collector,data_storage,other_reports,file,"Other health data that you want to upload",0,uploader
-
