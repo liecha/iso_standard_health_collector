@@ -49,7 +49,7 @@ st.markdown("""
         <style>
                .block-container {
                     padding-top: 0rem;
-                    padding-bottom: 0rem;
+                    padding-bottom: 10rem;
                     padding-left: 5rem;
                     padding-right: 5rem;
                 }
@@ -58,6 +58,16 @@ st.markdown("""
 
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
+def uploader(text, key_in):
+    uploaded_files = st.file_uploader(
+                        text, 
+                        accept_multiple_files=True,
+                        key=key_in #input_key + '_uploader'
+                    )
+    for uploaded_file in uploaded_files:
+        uploaded_file.read()
+    return uploaded_files
+
 def calculate_age(date_of_birth):
     date_now = date.today()
     your_years = date_now.year - date_of_birth.year
@@ -65,6 +75,10 @@ def calculate_age(date_of_birth):
     your_days = date_now.day - date_of_birth.day
     result_string = str(your_years) + ' years old'
     return result_string
+
+def save_data():
+    print('this_vaiable')
+    print('this_value')
 
 result = avatar(
     [
@@ -80,13 +94,19 @@ st.write(
     """
     # Emelie Chandni
 
-    Welcome to our _:blue[personal lifeAtlas space]_! This space gives you an overview of your health data, saved documents and records.
-    Make sure to update your profile with as much information as possible to get the most of your data collection.
+    Welcome to our _:blue[personal lifeAtlas space]_! This space gives you an overview of your health, medical records, perscriptions and history.
+    Make sure to update your profile with as much information as possible to get the most out of your data collection.
     """
 ) 
-tab1, tab2 = st.tabs(["Home", "Health Data"])            
+
+tab1, tab2 = st.tabs(["Home", "Health Data Collector"])            
   
 with tab1:
+    st.warning(        """
+        You have not listed any emergency contact.
+        [Go to the emergency collector to fill this in](https://github.com/streamlit/streamlit/issues)
+        """,
+        icon="⚠️")
     st.info(
         """
         Missing data in your health collection.
@@ -97,7 +117,7 @@ with tab1:
 
     st.success(
         """
-        Successfully [uploaded data](https://blog.streamlit.io/the-next-frontier-for-streamlit/) to you personal lifeAtlas.
+        Successfully [uploaded data](https://blog.streamlit.io/the-next-frontier-for-streamlit/) to you personal lifeAtlas space.
         """,
         icon="⭐️",
     )
@@ -109,7 +129,7 @@ with tab2:
 
     df_data = pd.read_csv('data/iso_standard_health_selection.csv')
     df_locations = pd.read_csv('data/worldcities.csv').sort_values(['city']).reset_index()
-    index_location = df_locations[df_locations['city'] == 'Stockholm']
+    index_location = int(df_locations[df_locations['city'] == 'Stockholm'].index[0])
     locations_list = df_locations['city'].values
     titles_list = df_data['title'].unique()
     gender_list = ['Female', 'Male', 'Non-gender', 'Other']
@@ -122,7 +142,7 @@ with tab2:
             df_selection = df_data[df_data['title'] == titles_list[i]]
             if df_selection['title'].iloc[0] == 'Data Collection':
                     uploaded_files = st.file_uploader(
-                        'Upload medical records, documents or data files:', 
+                        'Upload health related files that you wish to store in you _:blue[personal atlasLife storage]_', 
                         accept_multiple_files=True,
                         key=input_key + '_uploader'
                     )
@@ -131,7 +151,8 @@ with tab2:
                     collection_questions = df_selection['question_primary'].values
                     st.caption("_:blue[Example of data or documents]_ to upload")  
                     for k in range(0, len(collection_questions)):
-                        st.caption(" --- " + collection_questions[k])        
+                        st.caption(" --- " + collection_questions[k])   
+                    st.button('Save', key=input_key + '_uploader_button', on_click=save_data)    
             else:
                 for j in range(0, len(df_selection)):     
                     input_key = df_selection['variable_name'].iloc[j] + '_key'
@@ -139,19 +160,23 @@ with tab2:
                     this_question = df_selection['question_primary'].iloc[j]
                     this_widget_type = df_selection['widget_type'].iloc[j]
                     if this_widget_type == 'text_input':
-                        st.text_input(this_question, '', key=input_key)
+                        this_text = st.text_input(this_question, '', key=input_key)
                     if this_widget_type == 'selectbox':
                         if this_variable == 'gender':
-                            st.selectbox(this_question, gender_list)
+                            this_gender = st.selectbox(this_question, gender_list, key='selector_gender')                            
                         if this_variable[0:5] == 'city_':
-                            selected_city = st.selectbox(this_question, locations_list, index=39963)
+                            selected_city = st.selectbox(this_question, locations_list, index=index_location)
                             df_selected_city = df_locations[df_locations['city'] == selected_city] 
                             df_location = df_selected_city[["lat","lng"]].rename(columns={"lng": "lon"})
                             st.map(df_location)
                     if this_widget_type == 'date_input':
                         date_of_birth = st.date_input(this_question, value=None, min_value=datetime.datetime(1914, 1, 1))
                         if date_of_birth:
-                            age = calculate_age(date_of_birth)
+                            this_age = calculate_age(date_of_birth)
                         else:
-                            age = 'Unknown'
-                        st.write("Your are:", age)
+                            this_age = 'Unknown'
+                        st.write("Your are:", this_age)
+                    if this_widget_type == 'uploader':
+                        uploader(this_question, input_key +'_uploader')
+                st.button('Save', key=input_key + '_button', on_click=save_data)  
+            

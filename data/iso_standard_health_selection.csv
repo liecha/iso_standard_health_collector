@@ -2,24 +2,38 @@ title,subtitle,category,variable_name,type,question_primary,question_secondary,w
 Basic Personal Data,Basic Info Collector,patientID_basics,birth_date,str,Date of birth,0,date_input
 Basic Personal Data,Basic Info Collector,patientID_basics,gender,int,Gender identity,0,selectbox
 Basic Personal Data,Basic Info Collector,patientID_basics,city_living,obj,Location,0,selectbox
-Data Collection,Raw Data Collector,medical_history,medical_records_storage,file,Medical records,0,uploader
-Data Collection,Raw Data Collector,personal_health_data,wearable_data,file,Wearable devices that data (e.g heart rate/activity logs),0,uploader
-Data Collection,Raw Data Collector,personal_health_data,tracking_data,file,Self-monitoring records (e.g blood pressure/glucose monitoring),0,uploader
-Data Collection,Raw Data Collector,personal_health_data,log_data,file,Dietary logs or exercise routines,0,uploader
-Data Collection,Raw Data Collector,medical_visits,prescriptions,file,Prescriptions from healthcare providers,0,uploader
-Data Collection,Raw Data Collector,diagnostics_labs,radiology_pathology_reports,file,Radiology or pathology reports,0,uploader
-Data Collection,Raw Data Collector,diagnostics_labs,genetic_reports,file,Genetic and genomic data,0,uploader
-Data Collection,Raw Data Collector,health_records,lab_reports,file,Lab results and diagnostics reports,0,uploader
-Data Collection,Raw Data Collector,health_records,images_reports,file,"Imaging from tests (e.g X-rays, MRIs)",0,uploader
-Data Collection,Raw Data Collector,health_records,other_reports,file,"Other health data that you want to upload",0,uploader
 Detailed Personal Data,Detailed Info Collector,patientID_basics,city_born,str,"Location of birth",0,selectbox
 Detailed Personal Data,Detailed Info Collector,patientID_basics,ethnicity_group,str,Ethnicity group,0,text_input
 Detailed Personal Data,Detailed Info Collector,patientID_basics,primary_language,str,Primary language (spoken at home),0,text_input
 Detailed Personal Data,Detailed Info Collector,patientID_basics,occupation,str,Occupation,0,text_input
-Detailed Personal Data,Detailed Info Collector,patientID_basics,diagnoses,array,Diagnoses considered in your every day life,0,text_input
-Detailed Personal Data,Detailed Info Collector,patientID_basics,allgergies,array,Allergies,0,text_input
+Medical State,Current Medical Perception,medical_percention,cronical_conditions,str,List cronical conditions,0,text_input
+Medical State,Current Medical Perception,data_storage,data_cronical_conditions,file,Upload medical record about this condition,0,uploader
+Medical State,Current Medical Perception,medical_percention,allgergies,array,List allergies,0,text_input
+Medical State,Current Medical Perception,data_storage,data_allergies,file,Upload medical record and prescriptions related to you allergies,0,uploader
+Medical State,Current Medical Perception,medical_percention,current_diagnoses,str,List current diagnoses,0,text_input
+Medical State,Current Medical Perception,data_storage,data_diagnosis,file,Upload medical record about this diagnosis,0,uploader
+Medical State,Current Medical Perception,medical_percention,current_medication,str,List current medications,0,text_input
+Medical State,Current Medical Perception,data_storage,data_medication,file,Upload prescriptions from medication,0,uploader
+Medical State,Current Medical Perception,medical_percention,current_treatments,str,List current treatments,0,text_input
+Medical State,Current Medical Perception,medical_percention,current_doctors,str,List current referrals and specialists treating you,0,text_input
+Medical History,Medical History Summary,medical_history,past_conditions,str,List past medical conditions,0,text_input
+Medical History,Medical History Summary,data_storage,data_past_conditions,file,Upload documents related to this condition,0,uploader
+Medical History,Medical History Summary,medical_history,surgical_history,str,List surguries that you have had in your life,0,text_input
+Medical History,Medical History Summary,data_storage,data_surgical_history,file,Upload documents related to these surguries,0,uploader
+Medical History,Medical History Summary,medical_history,family_medical_history,str,List diagnoses or conditions that are hereditary in your family,0,text_input
+Medical History,Medical History Summary,data_storage,data_family_history,file,Upload documents related to these diagnoses or conditions,0,uploader
 Emergency Data,Emergency Info Collector,emergency_info,emergency_contact,str,Emergency contact,0,text_input
 Emergency Data,Emergency Info Collector,emergency_info,emergency_phone,str,Phone number,0,text_input
 Emergency Data,Emergency Info Collector,emergency_info,emergency_allerts,array,Are there any emergency health profiles that outline your key diagnoses and allergies?,0,text_input
 Emergency Data,Emergency Info Collector,emergency_info,health_provider_primary,array,Who is your primary healthcare provider?,0,text_input
+Data Collection,Raw Data Collector,data_storage,medical_records_storage,file,Medical records,0,uploader
+Data Collection,Raw Data Collector,data_storage,wearable_data,file,Wearable devices that data (e.g heart rate/activity logs),0,uploader
+Data Collection,Raw Data Collector,data_storage,tracking_data,file,Self-monitoring records (e.g blood pressure/glucose monitoring),0,uploader
+Data Collection,Raw Data Collector,data_storage,log_data,file,Dietary logs or exercise routines,0,uploader
+Data Collection,Raw Data Collector,data_storage,prescriptions,file,Prescriptions from healthcare providers,0,uploader
+Data Collection,Raw Data Collector,data_storage,radiology_pathology_reports,file,Radiology or pathology reports,0,uploader
+Data Collection,Raw Data Collector,data_storage,genetic_reports,file,Genetic and genomic data,0,uploader
+Data Collection,Raw Data Collector,data_storage,lab_reports,file,Lab results and diagnostics reports,0,uploader
+Data Collection,Raw Data Collector,data_storage,images_reports,file,"Imaging from tests (e.g X-rays, MRIs)",0,uploader
+Data Collection,Raw Data Collector,data_storage,other_reports,file,"Other health data that you want to upload",0,uploader
 
